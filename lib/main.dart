@@ -161,20 +161,10 @@ class PartyEmojiPainter extends CustomPainter {
     final hatPath = Path()
       ..moveTo(size.width * 0.25, size.height * 0.10)
       ..lineTo(size.width * 0.55, size.height * 0.1)
-      ..lineTo(size.width * .38, size.height * -0.8)
+      ..lineTo(size.width * 0.38, size.height * -0.8)
       ..close();
     final hatPaint = Paint()..color = Colors.deepPurple;
     canvas.drawPath(hatPath, hatPaint);
-
-    final hatBandPaint = Paint()
-      ..color = Colors.yellow
-      ..strokeWidth = 6
-      ..style = PaintingStyle.stroke;
-    canvas.drawLine(
-      Offset(size.width * 0.30, size.height * 0.20),
-      Offset(size.width * 0.48, size.height * 0.16),
-      hatBandPaint,
-    );
 
     final confettiColors = [
       Colors.red,
