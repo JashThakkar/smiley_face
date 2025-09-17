@@ -140,16 +140,13 @@ class PartyEmojiPainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height / 2);
     final faceRadius = size.width / 2;
 
-    // Face
     final facePaint = Paint()..color = const Color.fromARGB(255, 59, 137, 255);
     canvas.drawCircle(center, faceRadius, facePaint);
 
-    // Eyes
     final eyePaint = Paint()..color = Colors.black;
     canvas.drawCircle(Offset(size.width * 0.35, size.height * 0.35), 10, eyePaint);
     canvas.drawCircle(Offset(size.width * 0.65, size.height * 0.35), 10, eyePaint);
 
-    // Smile
     final smilePaint = Paint()
       ..color = Colors.black
       ..style = PaintingStyle.stroke
@@ -157,9 +154,8 @@ class PartyEmojiPainter extends CustomPainter {
     final smileRect = Rect.fromCircle(center: center, radius: size.width * 0.35);
     canvas.drawArc(smileRect, 0.1 * pi, 0.8 * pi, false, smilePaint);
 
-    // Party hat (triangle) sitting on top-left of head
     final hatPath = Path()
-      ..moveTo(size.width * 0.25, size.height * 0.10)
+      ..moveTo(size.width * 0.15, size.height * 0.12)
       ..lineTo(size.width * 0.55, size.height * 0.1)
       ..lineTo(size.width * 0.38, size.height * -0.8)
       ..close();
@@ -171,7 +167,7 @@ class PartyEmojiPainter extends CustomPainter {
       Colors.green,
       Colors.orange,
       Colors.pink,
-      Colors.blueAccent,
+      const Color.fromARGB(255, 255, 68, 224),
     ];
     final confettiPositions = [
       Offset(size.width * 0.15, size.height * 0.15),
@@ -179,43 +175,16 @@ class PartyEmojiPainter extends CustomPainter {
       Offset(size.width * 0.12, size.height * 0.75),
       Offset(size.width * 0.88, size.height * 0.70),
       Offset(size.width * 0.80, size.height * 0.10),
+      Offset(size.width * 0.25, size.height * -0.15),
+      Offset(size.width * 0.05, size.height * 0.08),
+      Offset(size.width * 0.12, size.height * 0.75),
+      Offset(size.width * 0.8, size.height * -0.10),
+      Offset(size.width * 0.40, size.height * 0.35),
     ];
     for (int i = 0; i < confettiPositions.length; i++) {
       final p = Paint()..color = confettiColors[i % confettiColors.length];
       canvas.drawCircle(confettiPositions[i], 6, p);
     }
-
-    final hornBase = Offset(size.width * 0.62, size.height * 0.60);
-    final hornRect = RRect.fromRectAndRadius(
-      Rect.fromCenter(center: hornBase, width: 36, height: 10),
-      Radius.circular(4),
-    );
-    final hornPaint = Paint()..color = Colors.orange;
-    canvas.drawRRect(hornRect, hornPaint);
-
-    final hornArcPaint = Paint()
-      ..color = Colors.orange
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 6;
-    final hornArcRect = Rect.fromCircle(
-      center: Offset(hornBase.dx + 26, hornBase.dy),
-      radius: 14,
-    );
-    canvas.drawArc(hornArcRect, -pi / 4, pi / 1.2, false, hornArcPaint);
-
-    final stripePaint = Paint()
-      ..color = Colors.red
-      ..strokeWidth = 3;
-    canvas.drawLine(
-      Offset(hornBase.dx - 16, hornBase.dy - 4),
-      Offset(hornBase.dx + 16, hornBase.dy - 4),
-      stripePaint,
-    );
-    canvas.drawLine(
-      Offset(hornBase.dx - 16, hornBase.dy + 4),
-      Offset(hornBase.dx + 16, hornBase.dy + 4),
-      stripePaint,
-    );
   }
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
