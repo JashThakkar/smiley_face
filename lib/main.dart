@@ -81,7 +81,18 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
           ],
         ),
       ),
-      body: TabBarView(
+      body: Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFFB3E5FC), // light blue
+            Color(0xFFE1BEE7), // light purple
+          ],
+        ),
+      ),
+      child: TabBarView(
         controller: _tabController,
         children: [
           Center(
@@ -129,6 +140,7 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
             ],
           ),
         ],
+      ),
       ),
       bottomNavigationBar: BottomAppBar(),
     );
