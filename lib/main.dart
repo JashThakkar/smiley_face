@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: DefaultTabController(
-        length: 4,
+        length: 3,
         child: _TabsNonScrollableDemo(),
       ),
     );
@@ -42,7 +42,7 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
     super.initState();
     _tabController = TabController(
       initialIndex: 0,
-      length: 4,
+      length: 3,
       vsync: this,
     );
     _tabController.addListener(() {
@@ -62,10 +62,9 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
   @override
   Widget build(BuildContext context) {
     final tabs = [
-      'tab1',
-      'tab2',
-      'tab2',
-      "tab4",
+      'emoji 1',
+      'emoji 2',
+      'emoji 3',
     ];
     return Scaffold(
       appBar: AppBar(
