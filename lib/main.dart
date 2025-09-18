@@ -86,30 +86,26 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color(0xFFB3E5FC), // light blue
-            Color(0xFFE1BEE7), // light purple
+            Color(0xFFB3E5FC),
+            Color(0xFFE1BEE7),
           ],
         ),
       ),
       child: TabBarView(
         controller: _tabController,
         children: [
-          // TAB 1: Regular smiley
           Center(
             child: CustomPaint(
               size: const Size(200, 200),
               painter: SmileyFacePainter(),
             ),
           ),
-          // TAB 2: Party emoji
           Center(
             child: CustomPaint(
               size: Size(200, 200),
               painter: PartyEmojiPainter(),
             ),
           ),
-
-          // TAB 3: Red heart
           Center(
             child: CustomPaint(
               size: Size(200, 200),
@@ -129,16 +125,13 @@ class PartyEmojiPainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height / 2);
     final faceRadius = size.width / 2;
 
-    // Face
     final facePaint = Paint()..color = const Color.fromARGB(255, 59, 137, 255);
     canvas.drawCircle(center, faceRadius, facePaint);
 
-    // Eyes
     final eyePaint = Paint()..color = Colors.black;
     canvas.drawCircle(Offset(size.width * 0.35, size.height * 0.35), 10, eyePaint);
     canvas.drawCircle(Offset(size.width * 0.65, size.height * 0.35), 10, eyePaint);
 
-    // Smile
     final smilePaint = Paint()
       ..color = Colors.black
       ..style = PaintingStyle.stroke
@@ -146,7 +139,6 @@ class PartyEmojiPainter extends CustomPainter {
     final smileRect = Rect.fromCircle(center: center, radius: size.width * 0.35);
     canvas.drawArc(smileRect, 0.1 * pi, 0.8 * pi, false, smilePaint);
 
-    // Party hat (triangle) sitting on top-left of head
     final hatPath = Path()
       ..moveTo(size.width * 0.25, size.height * 0.10)
       ..lineTo(size.width * 0.55, size.height * 0.1)
@@ -247,16 +239,13 @@ class SmileyFacePainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height / 2);
     final r = size.width / 2;
 
-    // face
     final facePaint = Paint()..color = const Color.fromARGB(255, 59, 137, 255);
     canvas.drawCircle(center, r, facePaint);
 
-    // eyes
     final eyePaint = Paint()..color = Colors.black;
     canvas.drawCircle(Offset(size.width * 0.35, size.height * 0.35), 10, eyePaint);
     canvas.drawCircle(Offset(size.width * 0.65, size.height * 0.35), 10, eyePaint);
 
-    // smile
     final smilePaint = Paint()
       ..color = Colors.black
       ..style = PaintingStyle.stroke
