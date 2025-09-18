@@ -94,6 +94,14 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
       child: TabBarView(
         controller: _tabController,
         children: [
+          // TAB 1: Regular smiley
+          Center(
+            child: CustomPaint(
+              size: const Size(200, 200),
+              painter: SmileyFacePainter(),
+            ),
+          ),
+          // TAB 2: Party emoji
           Center(
             child: CustomPaint(
               size: Size(200, 200),
@@ -101,42 +109,12 @@ class __TabsNonScrollableDemoState extends State<_TabsNonScrollableDemo>
             ),
           ),
 
-          // TAB 2: Red heart
+          // TAB 3: Red heart
           Center(
             child: CustomPaint(
               size: Size(200, 200),
               painter: HeartPainter(),
             ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.network(
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi0zzWDQNYkMxxXfgyEUKhft5_GPdxmhCrpQ&s",
-                width: 150,
-                height: 150,
-              ),
-              SizedBox(height: 10),
-              Text(
-                "Volcano Eruption 54°F",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.network(
-                "https://img.freepik.com/free-vector/hand-drawn-tornado-cartoon-illustration_52683-121089.jpg",
-                width: 150,
-                height: 150,
-              ),
-              SizedBox(height: 10),
-              Text(
-                "Tornado 54°F",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ],
           ),
         ],
       ),
@@ -257,6 +235,34 @@ class HeartPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2;
     canvas.drawPath(path, outline);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
+class SmileyFacePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = Offset(size.width / 2, size.height / 2);
+    final r = size.width / 2;
+
+    // face
+    final facePaint = Paint()..color = const Color.fromARGB(255, 59, 137, 255);
+    canvas.drawCircle(center, r, facePaint);
+
+    // eyes
+    final eyePaint = Paint()..color = Colors.black;
+    canvas.drawCircle(Offset(size.width * 0.35, size.height * 0.35), 10, eyePaint);
+    canvas.drawCircle(Offset(size.width * 0.65, size.height * 0.35), 10, eyePaint);
+
+    // smile
+    final smilePaint = Paint()
+      ..color = Colors.black
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 5;
+    final smileRect = Rect.fromCircle(center: center, radius: size.width * 0.35);
+    canvas.drawArc(smileRect, 0.1 * pi, 0.8 * pi, false, smilePaint);
   }
 
   @override
